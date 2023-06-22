@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nx/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/formulario.css" th:href="@{/css/formulario.css}">
+  <title>Lista de Pedido</title>
+</head>
+<body>
+  <header class="header">
+    <div>
+      <p class="logo"><a href="/pedido">Control<span>Ped</span></a></p>
+    </div>
+    <nav>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link" href="/pedido">Lista de Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/pedido/formulario">Cadastro de Pedidos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main main_container main-lista">
+    <h1 class="lista_title">Pedidos Fechados</h1>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">CLIENTE</th>
+          <th scope="col">TRABALHO</th>
+          <th scope="col">ORCAMENTO</th>
+          <th scope="col">CÁLCULO</th>
+          <th scope="col">VALOR R$</th>
+          <th scope="col">PERCENTUAL</th>
+          <th scope="col">COMISSÃO</th>
+          <th scope="col">ENVIO NF</th>
+          <th scope="col">VENCIMENTO</th>
+          <th scope="col">PRAZO PAG</th>
+          <th scope="col">Nº OP</th>
+          <th scope="col">AÇÕES</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pedido : ${listaDePedidos}">
+        <td th:text="${pedido.cliente}"></td>
+        <td th:text="${pedido.trabalho}"></td>
+        <td th:text="${pedido.orcamento}"></td>
+        <td th:text="${pedido.calculo}"></td>
+        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.valor,1,2,'COMMA')}"></td>
+        <td th:text="${pedido.percentual}"></td>
+        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.comissao,1,2,'COMMA')}"></td>
+        <td th:text="${#temporals.format(pedido.dataEnvioNF, 'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(pedido.dataVencimentoBoleto, 'dd/MM/yyyy')}"></td>
+        <td th:text="${pedido.prazoPagamento}"></td>
+        <td th:text="${pedido.numeroOP}"></td>
+        <td>
+          <div class="td_acoes">
+            <button><a th:href="@{/pedido/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
+            <form action="/pedido" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="idpedido" th:value="${pedido.idpedido}">
+              <button type="submit" id="btn_excluir">Excluir</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="footer">
+    <p>Desenvolvido por <a class="footer_link" href="https://escuderodev.com.br/" target="_blank">Escudero<span>Dev</span></a> - 2023</p>
+  </footer>
+</body>
+</html>
