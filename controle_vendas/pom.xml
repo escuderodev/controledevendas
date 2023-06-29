@@ -11,7 +11,7 @@
 	<groupId>br.com.escuderodev</groupId>
 	<artifactId>vendas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>vendas</name>
 	<description>Controle de Vendas</description>
 	<properties>
