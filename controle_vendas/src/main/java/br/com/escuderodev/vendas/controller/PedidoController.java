@@ -1,15 +1,14 @@
 package br.com.escuderodev.vendas.controller;
 
-import br.com.escuderodev.vendas.models.DadosAtualizaPedido;
-import br.com.escuderodev.vendas.models.DadosCadastroPedido;
-import br.com.escuderodev.vendas.models.Pedido;
-import br.com.escuderodev.vendas.models.PedidoRepository;
+import br.com.escuderodev.vendas.models.pedido.DadosAtualizaPedido;
+import br.com.escuderodev.vendas.models.pedido.DadosCadastroPedido;
+import br.com.escuderodev.vendas.models.pedido.Pedido;
+import br.com.escuderodev.vendas.models.pedido.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 
 @Controller

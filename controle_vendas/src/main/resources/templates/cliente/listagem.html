@@ -6,12 +6,12 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/formulario.css" th:href="@{/css/formulario.css}">
-  <title>Lista de Pedido</title>
+  <title>Lista de Clientes</title>
 </head>
 <body>
   <header class="header">
     <div>
-      <p class="logo"><a href="/pedido">Control<span>Ped</span></a></p>
+      <p class="logo"><a href="/cliente">Control<span>Ped</span></a></p>
     </div>
     <nav>
       <ul class="nav">
@@ -24,43 +24,33 @@
   </header>
 
   <main class="main main_container main-lista">
-    <h1 class="lista_title">Pedidos Fechados</h1>
+    <h1 class="lista_title">Lista de Clientes</h1>
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">CLIENTE</th>
-          <th scope="col">TRABALHO</th>
-          <th scope="col">ORCAMENTO</th>
-          <th scope="col">CÁLCULO</th>
-          <th scope="col">VALOR R$</th>
-          <th scope="col">PERCENTUAL</th>
-          <th scope="col">COMISSÃO</th>
-          <th scope="col">ENVIO NF</th>
-          <th scope="col">VENCIMENTO</th>
-          <th scope="col">PRAZO PAG</th>
-          <th scope="col">Nº OP</th>
+          <th scope="col">EMPRESA</th>
+          <th scope="col">CONTATO</th>
+          <th scope="col">TELEFONE</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">DATA DO CONTATO</th>
+          <th scope="col">RESUMO</th>
           <th scope="col">AÇÕES</th>
         </tr>
       </thead>
       <tbody>
-      <tr th:each="pedido : ${listaDePedidos}">
-        <td th:text="${pedido.cliente}"></td>
-        <td th:text="${pedido.trabalho}"></td>
-        <td th:text="${pedido.orcamento}"></td>
-        <td th:text="${pedido.calculo}"></td>
-        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.valor,1,2,'COMMA')}"></td>
-        <td th:text="${pedido.percentual}"></td>
-        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.comissao,1,2,'COMMA')}"></td>
-        <td th:text="${#temporals.format(pedido.dataEnvioNF, 'dd/MM/yyyy')}"></td>
-        <td th:text="${#temporals.format(pedido.dataVencimentoBoleto, 'dd/MM/yyyy')}"></td>
-        <td th:text="${pedido.prazoPagamento}"></td>
-        <td th:text="${pedido.numeroOP}"></td>
+      <tr th:each="cliente : ${listaDeClientes}">
+        <td th:text="${cliente.empresa}"></td>
+        <td th:text="${cliente.contato}"></td>
+        <td th:text="${cliente.telefone}"></td>
+        <td th:text="${cliente.email}"></td>
+        <td th:text="${#temporals.format(cliente.dataContato, 'dd/MM/yyyy')}"></td>
+        <td th:text="${cliente.resumo}"></td>
         <td>
           <div class="td_acoes">
-            <button><a th:href="@{/pedido/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
-            <form action="/pedido" method="post">
+            <button><a th:href="@{/cliente/formulario?id={id}(id=${cliente.idcliente})}" id="editar">Editar</a></button>
+            <form action="/cliente" method="post">
               <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="idpedido" th:value="${pedido.idpedido}">
+              <input type="hidden" name="idcliente" th:value="${cliente.idcliente}">
               <button type="submit" id="btn_excluir">Excluir</button>
             </form>
           </div>

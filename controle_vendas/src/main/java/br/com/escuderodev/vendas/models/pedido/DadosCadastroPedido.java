@@ -1,4 +1,4 @@
-package br.com.escuderodev.vendas.models;
+package br.com.escuderodev.vendas.models.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

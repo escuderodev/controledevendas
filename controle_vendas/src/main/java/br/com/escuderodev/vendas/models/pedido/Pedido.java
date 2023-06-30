@@ -1,4 +1,4 @@
-package br.com.escuderodev.vendas.models;
+package br.com.escuderodev.vendas.models.pedido;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -55,7 +54,6 @@ public class Pedido {
         this.valor = dados.valor();
         this.percentual = dados.percentual();
         this.dataEnvioNF = dados.dataEnvioNF();
-//        this.dataVencimentoBoleto = dados.dataVencimentoBoleto();
         this.prazoPagamento = dados.prazoPagamento();
         this.numeroOP = dados.numeroOP();
     }

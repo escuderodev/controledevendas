@@ -14,8 +14,9 @@ body {
 }
 
 .header {
+    padding: 0 3rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -84,6 +85,11 @@ body {
     width: 100px;
 }
 
+.btn_salvar_cliente {
+    width: 100px;
+    margin-left: 1rem;
+}
+
 span {
     color: red;
     font-weight: bold;
@@ -112,6 +118,8 @@ td, th {
 .td_acoes {
     display: flex;
     gap: .5rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-lista {
