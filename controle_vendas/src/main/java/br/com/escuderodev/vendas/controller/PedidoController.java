@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
 @Controller
-@RequestMapping("/pedido")
+@RequestMapping("/")
 public class PedidoController {
 
     @Autowired

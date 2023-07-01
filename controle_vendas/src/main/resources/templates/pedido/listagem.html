@@ -11,12 +11,12 @@
 <body>
   <header class="header">
     <div>
-      <p class="logo"><a href="/pedido">Control<span>Ped</span></a></p>
+      <p class="logo"><a href="/">Control<span>Ped</span></a></p>
     </div>
     <nav>
       <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/pedido">Lista de Pedidos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/pedido/formulario">Cadastro de Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Lista de Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/formulario">Cadastro de Pedidos</a></li>
         <li class="nav-item"><a class="nav-link" href="/cliente">Lista de Clientes</a></li>
         <li class="nav-item"><a class="nav-link" href="/cliente/formulario">Cadastro de Clientes</a></li>
       </ul>
@@ -57,8 +57,8 @@
         <td th:text="${pedido.numeroOP}"></td>
         <td>
           <div class="td_acoes">
-            <button><a th:href="@{/pedido/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
-            <form action="/pedido" method="post">
+            <button><a th:href="@{/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
+            <form action="/" method="post">
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="idpedido" th:value="${pedido.idpedido}">
               <button type="submit" id="btn_excluir">Excluir</button>
