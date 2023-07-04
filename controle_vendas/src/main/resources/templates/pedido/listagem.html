@@ -43,31 +43,39 @@
         </tr>
       </thead>
       <tbody>
-      <tr th:each="pedido : ${listaDePedidos}">
-        <td th:text="${pedido.cliente}"></td>
-        <td th:text="${pedido.trabalho}"></td>
-        <td th:text="${pedido.orcamento}"></td>
-        <td th:text="${pedido.calculo}"></td>
-        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.valor,1,2,'COMMA')}"></td>
-        <td th:text="${pedido.percentual}"></td>
-        <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.comissao,1,2,'COMMA')}"></td>
-        <td th:text="${#temporals.format(pedido.dataEnvioNF, 'dd/MM/yyyy')}"></td>
-        <td th:text="${#temporals.format(pedido.dataVencimentoBoleto, 'dd/MM/yyyy')}"></td>
-        <td th:text="${pedido.prazoPagamento}"></td>
-        <td th:text="${pedido.numeroOP}"></td>
-        <td>
-          <div class="td_acoes">
-            <button><a th:href="@{/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
-            <form action="/" method="post">
-              <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="idpedido" th:value="${pedido.idpedido}">
-              <button type="submit" id="btn_excluir">Excluir</button>
-            </form>
-          </div>
-        </td>
-      </tr>
+        <tr th:each="pedido : ${listaDePedidos}">
+          <td th:text="${pedido.cliente}"></td>
+          <td th:text="${pedido.trabalho}"></td>
+          <td th:text="${pedido.orcamento}"></td>
+          <td th:text="${pedido.calculo}"></td>
+          <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.valor,1,2,'COMMA')}"></td>
+          <td th:text="${pedido.percentual}"></td>
+          <td th:text="${'R$ ' + #numbers.formatDecimal(pedido.comissao,1,2,'COMMA')}"></td>
+          <td th:text="${#temporals.format(pedido.dataEnvioNF, 'dd/MM/yyyy')}"></td>
+          <td th:text="${#temporals.format(pedido.dataVencimentoBoleto, 'dd/MM/yyyy')}"></td>
+          <td th:text="${pedido.prazoPagamento}"></td>
+          <td th:text="${pedido.numeroOP}"></td>
+          <td>
+            <div class="td_acoes">
+              <button><a th:href="@{/formulario?id={id}(id=${pedido.idpedido})}" id="editar">Editar</a></button>
+              <form action="/" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="idpedido" th:value="${pedido.idpedido}">
+                <button type="submit" id="btn_excluir">Excluir</button>
+              </form>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
+    <div class="total_container">
+      <div th:each="totalPedidos : ${totalPedidos}">
+        <p class="total_nome">Total Pedidos  R$:</p> <input class="total" type="text" placeholder="0,00" th:value="${totalPedidos}" disabled="">
+      </div>
+      <div th:each="totalComissao : ${totalComissao}">
+        <p class="total_nome">Total Comissão R$:</p> <input class="total" type="text" placeholder="0,00" th:value="${totalComissao}" disabled="">
+      </div>
+    </div>
   </main>
 
   <footer class="footer">

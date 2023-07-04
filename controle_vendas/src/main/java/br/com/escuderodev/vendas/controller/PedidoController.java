@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -29,7 +30,13 @@ public class PedidoController {
 
     @GetMapping
     public String loadListPage(Model model) {
-        model.addAttribute("listaDePedidos", repository.findAll());
+        List<Pedido> pedidos = repository.findAll();
+        var pedido = new Pedido();
+        BigDecimal totalPedidos = pedido.calculaTotalPedidos(pedidos);
+        BigDecimal totalComissao = pedido.calculaTotalComissao(pedidos);
+        model.addAttribute("listaDePedidos", pedidos);
+        model.addAttribute("totalPedidos", totalPedidos);
+        model.addAttribute("totalComissao", totalComissao);
         return "pedido/listagem";
     }
 
@@ -41,7 +48,7 @@ public class PedidoController {
         pedido.setDataVencimentoBoleto(pedido.getDataEnvioNF().plusDays(pedido.getPrazoPagamento()));
         repository.save(pedido);
 
-        return "redirect:/pedido";
+        return "redirect:/";
     }
 
     @PutMapping
@@ -51,7 +58,7 @@ public class PedidoController {
         pedido.atualizaDados(dados);
         pedido.setComissao((pedido.getPercentual().divide(new BigDecimal(100))).multiply(pedido.getValor()));
         pedido.setDataVencimentoBoleto(pedido.getDataEnvioNF().plusDays(pedido.getPrazoPagamento()));
-        return "redirect:/pedido";
+        return "redirect:/";
     }
 
     @DeleteMapping
@@ -59,7 +66,7 @@ public class PedidoController {
     public String deletaPedido(Long idpedido) {
         repository.deleteById(idpedido);
 
-        return"redirect:/pedido";
+        return"redirect:/";
     }
 
 }

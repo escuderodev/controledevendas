@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +30,8 @@ public class Pedido {
     private LocalDate dataVencimentoBoleto;
     private int prazoPagamento;
     private String numeroOP;
+    private BigDecimal totalPedido;
+    private BigDecimal totalComissao;
 
     public Pedido(DadosCadastroPedido dados) {
         this.idpedido = dados.idpedido();
@@ -58,4 +61,19 @@ public class Pedido {
         this.numeroOP = dados.numeroOP();
     }
 
+     public BigDecimal calculaTotalPedidos(List<Pedido> pedidos) {
+         BigDecimal totalPedidos = new BigDecimal(0);
+         for (int i = 0; i < pedidos.size(); i ++) {
+             totalPedidos = totalPedidos.add(pedidos.get(i).getValor());
+         }
+         return totalPedidos;
+     }
+
+     public BigDecimal calculaTotalComissao(List<Pedido> pedidos) {
+         BigDecimal totalComissao = new BigDecimal(0);
+         for (int i = 0; i < pedidos.size(); i ++) {
+             totalComissao = totalComissao.add(pedidos.get(i).getComissao());
+         }
+         return totalComissao;
+     }
 }
