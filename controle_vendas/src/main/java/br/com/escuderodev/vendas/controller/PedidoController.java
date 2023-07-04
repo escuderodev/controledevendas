@@ -47,7 +47,6 @@ public class PedidoController {
         pedido.setComissao((pedido.getPercentual().divide(new BigDecimal(100))).multiply(pedido.getValor()));
         pedido.setDataVencimentoBoleto(pedido.getDataEnvioNF().plusDays(pedido.getPrazoPagamento()));
         repository.save(pedido);
-
         return "redirect:/";
     }
 
