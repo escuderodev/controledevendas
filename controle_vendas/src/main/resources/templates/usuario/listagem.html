@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:layout="http://www.ultraq.net.nx/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/formulario.css">
+  <title>Lista de Usuários</title>
+</head>
+<body>
+<header class="header">
+  <div>
+    <p class="logo"><a href="/pedido">Control<span>Ped</span></a></p>
+  </div>
+  <nav>
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link" href="/pedido">Lista de Pedidos</a></li>
+      <li class="nav-item"><a class="nav-link" href="/pedido/formulario">Cadastro de Pedidos</a></li>
+      <li class="nav-item"><a class="nav-link" href="/cliente">Lista de Clientes</a></li>
+      <li class="nav-item"><a class="nav-link" href="/cliente/formulario">Cadastro de Clientes</a></li>
+      <li class="nav-item"><a class="nav-link" href="/usuario">Lista de Usuários</a></li>
+      <li class="nav-item"><a class="nav-link" href="/usuario/formulario">Cadastro de Usuários</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main main_container main-lista">
+  <h1 class="lista_title">Lista de Usuários</h1>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NOME</th>
+      <th scope="col">LOGIN</th>
+      <th scope="col">AÇÕES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>EDUARDO DA SILVA ESCUDERO</td>
+      <td>escuderodev</td>
+      <td>
+        <div class="td_acoes">
+          <button><a href="/usuario/formulario?id=1" id="editar">Editar</a></button>
+          <form action="/usuario" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="idusuario" value="1">
+            <button type="submit" id="btn_excluir">Excluir</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ANA CAROLINA TOBIAS ESCUDERO</td>
+      <td>carol</td>
+      <td>
+        <div class="td_acoes">
+          <button><a href="/usuario/formulario?id=2" id="editar">Editar</a></button>
+          <form action="/usuario" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="idusuario" value="2">
+            <button type="submit" id="btn_excluir">Excluir</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</main>
+
+<footer class="footer">
+  <p>Desenvolvido por <a class="footer_link" href="https://escuderodev.com.br/" target="_blank">Escudero<span>Dev</span></a> - 2023</p>
+</footer>
+</body>
+</html>

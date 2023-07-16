@@ -11,14 +11,16 @@
 <body>
   <header class="header">
     <div>
-      <p class="logo"><a href="/">Control<span>Ped</span></a></p>
+      <p class="logo"><a href="/pedido">Control<span>Ped</span></a></p>
     </div>
     <nav>
       <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/">Lista de Pedidos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/formulario">Cadastro de Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/pedido">Lista de Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/pedido/formulario">Cadastro de Pedidos</a></li>
         <li class="nav-item"><a class="nav-link" href="/cliente">Lista de Clientes</a></li>
         <li class="nav-item"><a class="nav-link" href="/cliente/formulario">Cadastro de Clientes</a></li>
+        <li class="nav-item"><a class="nav-link" href="/usuario">Lista de Usuários</a></li>
+        <li class="nav-item"><a class="nav-link" href="/usuario/formulario">Cadastro de Usuários</a></li>
         <li class="nav-item"><a class="nav-link" href="/logout">logout</a></li>
       </ul>
     </nav>
@@ -26,7 +28,7 @@
 
   <main class="main">
     <div class="form-group">
-      <form action="/" method="post" class="form_container">
+      <form action="/pedido" method="post" class="form_container">
         <div class="form-group">
           <h1 class="title">Cadastro de Pedido</h1>
           <input type="hidden" name="_method" value="put" th:if="${pedido != null}">

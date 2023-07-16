@@ -45,7 +45,7 @@ public class UsuarioController {
         var usuario = new Usuario(dados);
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         repository.save(usuario);
-        return "redirect:/";
+        return "redirect:/pedido";
     }
 
     @PutMapping
@@ -53,7 +53,7 @@ public class UsuarioController {
     public String atualizaDadosUsuario(DadosAtualizaUsuario dados) {
         var usuario = repository.getReferenceById(dados.idusuario());
         usuario.atualizaDados(dados);
-        return "redirect:/";
+        return "redirect:/pedido";
     }
 
     @DeleteMapping
@@ -61,6 +61,6 @@ public class UsuarioController {
     public String deletaUsuario(Long idusuario) {
         repository.deleteById(idusuario);
 
-        return"redirect:/";
+        return"redirect:/pedido";
     }
 }

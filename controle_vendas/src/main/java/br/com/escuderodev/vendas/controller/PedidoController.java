@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/pedido")
 public class PedidoController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class PedidoController {
         pedido.setComissao((pedido.getPercentual().divide(new BigDecimal(100))).multiply(pedido.getValor()));
         pedido.setDataVencimentoBoleto(pedido.getDataEnvioNF().plusDays(pedido.getPrazoPagamento()));
         repository.save(pedido);
-        return "redirect:/";
+        return "redirect:/pedido";
     }
 
     @PutMapping
@@ -57,7 +57,7 @@ public class PedidoController {
         pedido.atualizaDados(dados);
         pedido.setComissao((pedido.getPercentual().divide(new BigDecimal(100))).multiply(pedido.getValor()));
         pedido.setDataVencimentoBoleto(pedido.getDataEnvioNF().plusDays(pedido.getPrazoPagamento()));
-        return "redirect:/";
+        return "redirect:/pedido";
     }
 
     @DeleteMapping
@@ -65,7 +65,7 @@ public class PedidoController {
     public String deletaPedido(Long idpedido) {
         repository.deleteById(idpedido);
 
-        return"redirect:/";
+        return"redirect:/pedido";
     }
 
 }
