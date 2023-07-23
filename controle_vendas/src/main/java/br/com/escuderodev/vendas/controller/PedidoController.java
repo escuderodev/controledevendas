@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -66,6 +67,20 @@ public class PedidoController {
         repository.deleteById(idpedido);
 
         return"redirect:/pedido";
+    }
+
+    @GetMapping("/vencimento")
+    public String loadListPageForDueDate(Model model) {
+        LocalDate startDate = LocalDate.of(2023, 07,01);
+        LocalDate endDate = LocalDate.of(2023, 07,31);;
+        List<Pedido> pedidos = repository.findAllByDataVencimentoBoletoGreaterThanEqualAndDataVencimentoBoletoLessThanEqual(startDate, endDate);
+        var pedido = new Pedido();
+        BigDecimal totalPedidos = pedido.calculaTotalPedidos(pedidos);
+        BigDecimal totalComissao = pedido.calculaTotalComissao(pedidos);
+        model.addAttribute("listaDePedidos", pedidos);
+        model.addAttribute("totalPedidos", totalPedidos);
+        model.addAttribute("totalComissao", totalComissao);
+        return "pedido/listagem";
     }
 
 }

@@ -1,9 +1,6 @@
 package br.com.escuderodev.vendas.models.pedido;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,7 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+@Entity(name = "Pedido")
+@Table(name = "pedido")
 @Getter
 @Setter
 @ToString
@@ -27,6 +25,7 @@ public class Pedido {
     private BigDecimal percentual;
     private BigDecimal comissao;
     private LocalDate dataEnvioNF;
+    @Column(name = "data_vencimento_boleto")
     private LocalDate dataVencimentoBoleto;
     private int prazoPagamento;
     private String numeroOP;
